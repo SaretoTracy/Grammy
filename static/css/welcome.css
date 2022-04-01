@@ -2,7 +2,7 @@
     background-color: #a7c1bc;
 }
 
-body {
+.display {
     display: flex;
     flex-direction: row;
     justify-content: center;
@@ -13,7 +13,7 @@ body {
     transition: 0.25s;
 }
 
-body .options {
+.options {
     display: flex;
     flex-direction: row;
     align-items: stretch;
@@ -24,23 +24,23 @@ body .options {
     height: 400px;
 }
 
-body .options .option:nth-child(2):hover {
+.options .option:nth-child(2):hover {
     width: 500px;
 }
 
-body .options .option:nth-child(3):hover {
+.options .option:nth-child(3):hover {
     width: 500px;
 }
 
-body .options .option:nth-child(4):hover {
+.options .option:nth-child(4):hover {
     width: 500px;
 }
 
-body .options .option:nth-child(5):hover {
+.options .option:nth-child(5):hover {
     width: 500px;
 }
 
-body .options .option {
+.options .option {
     position: relative;
     overflow: hidden;
     min-width: 60px;
@@ -52,7 +52,7 @@ body .options .option {
     transition: 0.5s cubic-bezier(0.05, 0.61, 0.41, 0.95);
 }
 
-body .options .option.active {
+.options .option.active {
     flex-grow: 10000;
     transform: scale(1);
     max-width: 600px;
@@ -61,18 +61,18 @@ body .options .option.active {
     background-size: auto 100%;
 }
 
-body .options .option.active .shadow {
+.options .option.active .shadow {
     box-shadow: inset 0 -120px 120px -120px #f8e941, inset 0 -120px 120px -100px #f8e941;
 }
 
-body .options .option .label {
+.options .option .label {
     bottom: 20px;
     left: 20px;
     transform: scale(0.9);
     background-color: transparent;
 }
 
-body .options .option:not(.active) {
+.options .option:not(.active) {
     flex-grow: 1;
     border-radius: 30px;
 }
@@ -103,4 +103,23 @@ body .options .option .label {
     height: 60px;
     color: #fc5276;
     transition: 0.5s cubic-bezier(0.05, 0.61, 0.41, 0.95);
+}
+
+.signs {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+}
+
+button a {
+    text-decoration: none;
+    background-color: #fc5276;
+}
+
+button {
+    background-color: #fc5276;
+    padding: 15px;
+    border: none;
+    border-radius: 20px;
 }
