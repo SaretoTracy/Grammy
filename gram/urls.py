@@ -15,7 +15,7 @@ Including another URLconf
 """
 from django.contrib import admin
 from insta import views 
-from django.urls import path, include
+from django.urls import path, include,re_path
 
 urlpatterns = [
     path('admin/', admin.site.urls),
@@ -25,5 +25,7 @@ urlpatterns = [
     path('accounts/', include('django.contrib.auth.urls')),
     path('tinymce/', include('tinymce.urls')),
     path('new/photos', views.new_photos, name='new-photos'),
+    path('comment/', views.comment, name='comment'),
+    # re_path(r'^like/(?P<image_id>\d+)', views.like, name='like'),
 
 ]

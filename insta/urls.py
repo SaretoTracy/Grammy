@@ -11,8 +11,9 @@ urlpatterns = [
     path('accounts/', include('django_registration.backends.one_step.urls')),
     path('accounts/', include('django.contrib.auth.urls')),
     path('new/photos', views.new_photos, name='new-photos'),
-    re_path(r'^like/(?P<image_id>\d+)', app_views.like, name='like'),
-    path('like/<int:image_id>>', views.like, name='like'),
+    path('like/<photos_id>', views.like, name='like'),
+    path('comment/', views.comment, name='comment'),
+
 )
 
     ]
