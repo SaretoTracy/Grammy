@@ -34,3 +34,9 @@ def new_photos(request):
        form = NewPhotosForm()
    return render(request, 'new_photos.html', {"form": form})
 
+def likes(request, image_id):
+    current_user=request.user
+    image=Photos.objects.get(id=image_id)
+    new_like.created=like.objects.get_or_create(liker=current_user,image=image)
+    new_like.save
+
