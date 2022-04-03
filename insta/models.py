@@ -1,6 +1,7 @@
 from django.db import models
 from cloudinary.models import CloudinaryField
 from django.utils import timezone
+from tinymce.models import HTMLField
 
 class Profile (models.Model):
     profile_pic= CloudinaryField('images/')
@@ -25,7 +26,7 @@ class Comments(models.Model):
 
 
 class Photos(models.Model):
-    image_name = models.CharField(max_length=100)
+    image_name = HTMLField()
     image = CloudinaryField('images/')
     caption= models.CharField(max_length=250)
     profile =  models.ManyToManyField('profile')

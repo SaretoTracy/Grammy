@@ -8,6 +8,8 @@ urlpatterns = [
     path('page/',views.Page,name = 'page'),
     path('accounts/', include('django_registration.backends.one_step.urls')),
     path('accounts/', include('django.contrib.auth.urls')),
+    path('new/photos', views.new_photos, name='new-photos'),
+
     ]
 
 if settings.DEBUG:

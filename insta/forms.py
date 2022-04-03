@@ -1,7 +1,9 @@
-# from django.contrib.auth.models import User
-# from django import forms
-# from .models import Photos, Profile
-
-# class PostForm(forms.ModelForm):
-#     model = Photos
-#     exclude = ['likes', 'comments','profile', 'post_date']
+from .models import Photos
+from django import forms
+#......
+class NewPhotosForm(forms.ModelForm):
+   class Meta:
+       model = Photos
+       exclude = ['profile']
+      
+       
