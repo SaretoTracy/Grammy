@@ -1,12 +1,13 @@
 from django.db import models
 from cloudinary.models import CloudinaryField
 
+
 class Profile (models.Model):
-    profile_pic= CloudinaryField('image')
+    profile_pic= CloudinaryField('images/')
     bio = models.CharField(max_length=250)
 
     def __str__(self):
-        return self.profile
+        return self.bio
     
     def save_profile(self):
         self.save()
@@ -16,13 +17,13 @@ class Profile (models.Model):
 
 class Photos(models.Model):
     image_name = models.CharField(max_length=100)
-    image = CloudinaryField('image')
+    image = CloudinaryField('images/')
     caption= models.CharField(max_length=250)
     profile =  models.ManyToManyField('profile')
     Comments= models.CharField(max_length=250)
 
     def __str__(self):
-        return self.photos
+        return self.caption
     
     def save_photos(self):
         self.save()

@@ -3,14 +3,26 @@
 
 <head>
     <meta charset="UTF-8">
-    <title>Hotel_image</title>
+    <title>page</title>
 </head>
 
 <body>
-    <form method="post" enctype="multipart/form-data">
-        {% csrf_token %} {{ form.as_p }}
-        <button type="submit">Upload</button>
-    </form>
+
+    <div class="row show ">
+
+        {% for pic in posts %}
+        <div class="col-md-4 card ">
+            {%if pic.image%}
+            <a href="#">
+                <img src="{{pic.image.url}}" data-target="#imageModal{{pic.id}}" data-toggle="modal" alt="" class="img-fluid" id="eachimage" style="height: 480px; width: 350px"></a> {%else%}
+            <p>No image</p>
+            {%endif%}
+        </div>
+
+        {% endfor %}
+    </div>
+
+
 </body>
 
 </html>
