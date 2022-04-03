@@ -1,28 +1,17 @@
-{% load bootstrap5 %} {% load static %}
-<!DOCTYPE html>
-<html>
+{%extends "django_registration/base.html"%} {% load bootstrap5 %} {% load static %} {% block content%} {% block styles %} {% bootstrap_css %}
+<link rel="stylesheet" href="{% static 'css/home.css' %}"> {% endblock %}
 
-<head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <title>New Article</title>
-    {{form.media}} {% block styles %} {% bootstrap_css %}
-    <link rel="stylesheet" href="{% static 'css/style.css' %}"> {% endblock %}
 
-</head>
-
-<body>
-
-    <form action="{%url 'new-photos'%}" method="post" enctype="multipart/form-data">
+<div class="container post bg-light " style="margin-top: 123px;">
+    <h4>CREATE A NEW POST</h4>
+    <form action="{%url 'new-photos'%}" method="post" enctype="multipart/form-data" class="m-4">
         {%csrf_token%} {% bootstrap_form form%}
-        <input type="submit" class="btn btn-success btn-lg" value="Post">
+        <input type="submit" class="btn mb-4 btn-primary btn-sm" value="Add Post">
+
     </form>
+</div>
 
-    {% block scripts %}
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-    {% bootstrap_javascript %} {% endblock %}
-
-</body>
-
-</html>
+{% block scripts %}
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+{% bootstrap_javascript %} {% endblock %} {% endblock %}
