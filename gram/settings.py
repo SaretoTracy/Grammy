@@ -43,6 +43,7 @@ INSTALLED_APPS = [
     'insta.apps.InstaConfig',
     'bootstrap5',
     'cloudinary',
+    'tinymce',
 ]
 
 MIDDLEWARE = [
