@@ -42,6 +42,7 @@ def like(request, photos_id):
 
     return HttpResponseRedirect(request.Meta['HTTP_REFERER'])
 
+
 @login_required(login_url='/accounts/login/')
 def comment(request):
     current_user = request.user
@@ -51,10 +52,10 @@ def comment(request):
             comment = form.save(commit=False)
             comment.user = current_user
             comment.save()
-        return redirect('home')
+        return redirect('page')
     else:
         form= CommentForm()
-    return render(request, 'home', {'form': form})
+    return render(request, 'page.html', {'form': form})
 
 @login_required(login_url='/accounts/login/')
 def search(request):
