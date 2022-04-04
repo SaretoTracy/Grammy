@@ -91,3 +91,11 @@ def updateprofile(request):
     else:
         profileform= ProfileForm()
     return render(request, 'update.html', {'profileform': profileform})
+@login_required(login_url='/accounts/login/')
+def single_image(request, image_id):
+    try:
+        image = Photos.objects.get(id=image_id)
+    except ObjectDoesNotExist:
+        raise Http404()
+
+    return render(request, 'singlepost.html', {'image': image})

@@ -29,6 +29,7 @@ urlpatterns = [
     path('search/', views.search, name='search'),
     path('profile/',views.profile,name="profile" ),
     path('updateprofile/', views.updateprofile, name='updateprofile'),
+    path('image/<int:image_id>', views.single_image, name='image'),
 
     # re_path(r'^like/(?P<image_id>\d+)', views.like, name='like'),
 
