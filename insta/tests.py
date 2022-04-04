@@ -1,4 +1,4 @@
-rom django.test import TestCase
+from django.test import TestCase
 from .models import Image, Profile, Comments
 from django.contrib.auth.models import User
 
