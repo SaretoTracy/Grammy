@@ -44,18 +44,19 @@ def like(request, photos_id):
 
 
 @login_required(login_url='/accounts/login/')
-def comment(request,photo_id):
-    current_user = request.user
-    if request.method == 'POST':
-        form = CommentForm(request.POST, request.FILES)
-        if form.is_valid():
-            comment = form.save(commit=False)
-            comment.user = current_user
-            comment.save()
-        return redirect('singlepost')
+def commentFunction(request,image_id):
+  commentform = CommentForm()
+  photo = Photos.objects.filter(pk = image_id).first()
+  if request.method == 'POST':
+    commentform = CommentForm(request.POST)
+    if commentform.is_valid():
+      comment = commentform.save(commit = False)
+      comment.user = request.user
+      comment.photo = photo
+      comment.save() 
     else:
-        form= CommentForm()
-    return render(request, 'singlepost.html', {'form': form})
+      commentform= CommentForm()
+  return redirect('singlepost.html',{"commentform": commentform})
 
 @login_required(login_url='/accounts/login/')
 def search(request):

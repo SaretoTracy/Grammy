@@ -12,9 +12,10 @@ urlpatterns = [
     path('accounts/', include('django.contrib.auth.urls')),
     path('new/photos', views.new_photos, name='new-photos'),
     path('like/<photos_id>', views.like, name='like'),
-    path('comment/', views.comment, name='comment'),
+    re_path(r'^comment/(?P<image_id>\d+)$',views.commentFunction,name='comment'),
     path('search/', views.search, name='search'),
     path('profile/',views.profile,name="profile" ),
+    # path('comment/<int:photos_id>',views.commentFunction,name='comment'),
     path('updateprofile/', views.updateprofile, name='updateprofile'),
     path('image/<int:image_id>', views.single_image, name='image'),
     

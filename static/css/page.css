@@ -35,7 +35,7 @@ body {
     padding: 1em 2em;
     width: 100%;
     height: 100vh;
-    overflow: hidden;
+    /* overflow: hidden; */
 }
 
 body:before {
@@ -47,6 +47,10 @@ body:before {
     background: linear-gradient(163deg, #1f1d2b 21%, rgba(31, 29, 43, 0.3113620448) 64%);
     opacity: 0.4;
     content: "";
+}
+
+.show {
+    margin-bottom: 1rem;
 }
 
 .container {

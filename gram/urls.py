@@ -25,12 +25,13 @@ urlpatterns = [
     path('accounts/', include('django.contrib.auth.urls')),
     path('tinymce/', include('tinymce.urls')),
     path('new/photos', views.new_photos, name='new-photos'),
-    path('comment/', views.comment, name='comment'),
+    
     path('search/', views.search, name='search'),
     path('profile/',views.profile,name="profile" ),
     path('updateprofile/', views.updateprofile, name='updateprofile'),
     path('image/<int:image_id>', views.single_image, name='image'),
-    
+    # path('comment/<int:photos_id>',views.commentFunction,name='comment'),
+    re_path(r'^comment/(?P<image_id>\d+)$',views.commentFunction,name='comment'),
 
     # re_path(r'^like/(?P<image_id>\d+)', views.like, name='like'),
 

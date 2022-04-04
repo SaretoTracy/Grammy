@@ -76,8 +76,8 @@ class Comments(models.Model):
     def save_comment(self):
         self.save()
     @classmethod
-    def display_comments_by_photoId(cls,photos_id):
-        comments = cls.objects.filter(photos_id = photos_id)
+    def display_comments_by_photoId(cls,image_id):
+        comments = cls.objects.filter(image_id = image_id)
         return comments
 
 class Like(models.Model):
