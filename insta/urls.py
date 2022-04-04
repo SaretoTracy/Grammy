@@ -17,6 +17,7 @@ urlpatterns = [
     path('profile/',views.profile,name="profile" ),
     path('updateprofile/', views.updateprofile, name='updateprofile'),
     path('image/<int:image_id>', views.single_image, name='image'),
+    
 
 )
 

@@ -44,7 +44,7 @@ def like(request, photos_id):
 
 
 @login_required(login_url='/accounts/login/')
-def comment(request):
+def comment(request,photo_id):
     current_user = request.user
     if request.method == 'POST':
         form = CommentForm(request.POST, request.FILES)
@@ -52,10 +52,10 @@ def comment(request):
             comment = form.save(commit=False)
             comment.user = current_user
             comment.save()
-        return redirect('page')
+        return redirect('singlepost')
     else:
         form= CommentForm()
-    return render(request, 'page.html', {'form': form})
+    return render(request, 'singlepost.html', {'form': form})
 
 @login_required(login_url='/accounts/login/')
 def search(request):
