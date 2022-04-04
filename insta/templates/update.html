@@ -1,16 +1,65 @@
-{%extends "django_registration/base.html"%} {% load bootstrap5 %} {% load static %} {% block content%} {% block styles %} {% bootstrap_css %}
-<link rel="stylesheet" href="{% static 'css/home.css' %}"> {% endblock %}
+{%extends "django_registration/base.html"%} {% load bootstrap5 %} {% load static %} {% block styles %} {% bootstrap_css %}
+<link rel="stylesheet" href="{% static 'css/page.css' %}"> {% endblock %} {% block content%}
+<div class="container">
+    <div class="container">
+        <div class="sidebar">
+            <a class="logo-expand" href="#">Grammy</a>
+            <div class="side-wrapper">
+                <div class="side-title">Home</div>
+                <div class="side-menu">
+                    <a class="sidebar-link Home is-active" href="#">
+                      Home
+                    </a>
+                    <a class="sidebar-link trending" href="{% url 'profile'%}">
+                        Profile
+                    </a>
+                    <a class="sidebar-link" href="{% url 'new-photos'%}">
+                       Upload post
+                    </a>
+                    <a class="sidebar-link" href="{%url 'updateprofile'%}">
+                       Update profile
+                    </a>
 
+                </div>
+            </div>
+            <div class="side-wrapper">
+                <div class="side-title">CATEGORY</div>
+                <div class="side-menu">
+                    <a class="sidebar-link" href="#">
+                         #NairobiGossip
+                    </a>
+                    <a class="sidebar-link" href="#">
+                       #Makeup
+                    </a>
+                    <a class="sidebar-link" href="#">
+ #Coding
+                    </a>
+                    <a class="sidebar-link" href="#">
+                        #Fashion
+                    </a>
+                </div>
+            </div>
+        </div>
+        {% if user.is_authenticated %}
+        <div class="wrapper">
+            <form class="navbar-form my-3" role="search" action="{% url 'search' %}">
 
+                <div class="input-group">
+                    <input type="text" class="form-control" placeholder="Search" name="image">
+                    <div class="input-group-btn search-bar">
+                        <button class="btn btn-default" type="submit"></button> </div>
+                    {% endif %}
+                </div>
+            </form>
 
-<div class="container post bg-light" style="margin-top: 123px;">
-    <h4 class="my-4">UPDATE PROFILE</h4>
-    <form action="{%url 'updateprofile'%}" method="post" enctype="multipart/form-data" class="m-4">
-        {%csrf_token%} {% bootstrap_form profileform%}
-        <input type="submit" class="btn btn-primary btn-sm mb-4" value="Update Profile">
-    </form>
-</div>
+            <div class=" post " style="margin-top: 123px;">
+                <h4 class="my-4">UPDATE PROFILE</h4>
+                <form action="{%url 'updateprofile'%}" method="post" enctype="multipart/form-data" class="m-4">
+                    {%csrf_token%} {% bootstrap_form profileform%}
+                    <input type="submit" class="btn btn-primary btn-sm mb-4" value="Update Profile">
+                </form>
+            </div>
 
-{% block scripts %}
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-{% bootstrap_javascript %} {% endblock %} {% endblock %}
+            {% block scripts %}
+            <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+            {% bootstrap_javascript %} {% endblock %} {% endblock %}

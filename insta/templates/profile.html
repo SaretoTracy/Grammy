@@ -1,43 +1,93 @@
-{%extends "django_registration/base.html"%} {% load static%} {% load bootstrap5 %} {% block styles %} {% bootstrap_css %}
-<link rel="stylesheet" href="{% static 'css/profile.css' %}"> {% endblock %} {% block content %}
-<div style="margin-top: 122px;" class="container">
+{%extends "django_registration/base.html"%} {% load bootstrap5 %} {% load static %} {% block styles %} {% bootstrap_css %}
+<link rel="stylesheet" href="{% static 'css/page.css' %}"> {% endblock %} {% block content%}
+<div class="container">
+    <div class="container">
+        <div class="sidebar">
+            <a class="logo-expand" href="#">Grammy</a>
+            <div class="side-wrapper">
+                <div class="side-title">Home</div>
+                <div class="side-menu">
+                    <a class="sidebar-link Home is-active" href="#">
+                      Home
+                    </a>
+                    <a class="sidebar-link trending" href="{% url 'profile'%}">
+                        Profile
+                    </a>
+                    <a class="sidebar-link" href="{% url 'new-photos'%}">
+                       Upload post
+                    </a>
+                    <a class="sidebar-link" href="{%url 'updateprofile'%}">
+                        Update profile
+                     </a>
+                    <a class="sidebar-link" href="#">
+                       logout
+                    </a>
 
-    <div class="container row">
-        {% for photo in profile %}
-        <div class="">
-
-            <img src="{{ photo.profile_pic.url}}" class="img-fluid img-thumbnail rounded-circle" style="width: 150px;" alt="Avatar" />
+                </div>
+            </div>
+            <div class="side-wrapper">
+                <div class="side-title">CATEGORY</div>
+                <div class="side-menu">
+                    <a class="sidebar-link" href="#">
+                         #NairobiGossip
+                    </a>
+                    <a class="sidebar-link" href="#">
+                       #Makeup
+                    </a>
+                    <a class="sidebar-link" href="#">
+ #Coding
+                    </a>
+                    <a class="sidebar-link" href="#">
+                        #Fashion
+                    </a>
+                </div>
+            </div>
         </div>
-        <div class="col-md-4">
-            <b>{{ user }}</b>
-            <a href="{% url 'updateprofile' %}"> <button class="button">Edit Profile</button> </a>
-            <a class='btn btn-default' href=""></a>
+        {% if user.is_authenticated %}
+        <div class="wrapper">
+            <form class="navbar-form my-3" role="search" action="{% url 'search' %}">
 
-            <div class="my-4">
-                <strong>
+                <div class="input-group">
+                    <input type="text" class="form-control" placeholder="Search" name="image">
+                    <div class="input-group-btn search-bar">
+                        <button class="btn btn-default" type="submit"></button> </div>
+                    {% endif %}
+                </div>
+            </form>
+            <div style="margin-top: 122px;" class="container">
+
+                <div class=" row">
+                    {% for photo in profile %}
+                    <div class="">
+
+                        <img src="{{ photo.profile_pic.url}}" class="img-fluid img-thumbnail rounded-circle" style="width: 150px;" alt="Avatar" />
+                    </div>
+                    <div class="col-md-4">
+                        <b>{{ user }}</b>
+                        <a href="{% url 'updateprofile' %}"> <button class="button">Edit Profile</button> </a>
+                        <a class='btn btn-default' href=""></a>
+
+                        <div class="md-4">
+                            <strong>
                <span> {{photo.posts}} Posts</span>
                 <span class="photo">{{photo.followers}} Followers</span>
                 {{photo.following}} Following
             </strong>
+                        </div>
+                        <b>{{photo.name}}</b>
+
+                    </div>
+                    {% endfor %}
+                </div>
+                <hr>
+                <div class="contain">
+                    {% for img in image %}
+                    <img src="{{img.image.url}}" alt="" srcset="" style="width:14rem ; height:9rem;" class="my-1"> {% endfor %}
+                </div>
+
+
+
+
             </div>
-            <b>{{photo.name}}</b>
 
-        </div>
-        {% endfor %}
-    </div>
-    <hr>
-    <div class="container">
-        {% for img in image %}
-        <img src="{{img.image.url}}" alt="" srcset="" style="width:14rem ; height:9rem;" class="my-1"> {% endfor %}
-    </div>
-
-    <div class="container">
-        {% for img in profile %}
-        <img src="{{img.profile_pic.url}}" alt="" srcset="" style="width:14rem ; height:9rem;" class="my-1"> {% endfor %}
-    </div>
-
-
-
-</div>
-
-{% endblock %}
+            {% endblock %}

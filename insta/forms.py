@@ -5,7 +5,7 @@ from django import forms
 class NewPhotosForm(forms.ModelForm):
    class Meta:
        model = Photos
-       exclude = ['profile','likes']
+       exclude = ['profile','likes','comments']
 
 class CommentForm(forms.ModelForm):
     class Meta:

@@ -1,16 +1,81 @@
 {%extends "django_registration/base.html"%} {% load bootstrap5 %} {% load static %} {% block styles %} {% bootstrap_css %}
-<link rel="stylesheet" href="{% static 'css/home.css' %}"> {% endblock %} {% block content%}
-<div class="container row text-center " style="margin-top:99px; ">
-    <div class="container bg-light mb-4" style="margin-left: 210px;width: 52rem;">
-        <h4 style="text-align:center; color:orangered" ;>IMAGE DETAILS</h4>
-        <img src="{{image.image.url}}" alt="" srcset="" style="width:44rem ; ">
-        <h4>Image Name: {{image.image_name}}</h4>
-        <p>Caption: {{image.caption}}</p>
-        <h4>Posted by: {{image.user}}</h4>
-        <h4>Post Date: {{image.pub_date}}</h4>
-        <h4>Likes: {{image.likes}}</h4>
-    </div>
-</div>
+<link rel="stylesheet" href="{% static 'css/page.css' %}"> {% endblock %} {% block content%}
+<div class="container">
+    <div class="container">
+        <div class="sidebar">
+            <a class="logo-expand" href="#">Grammy</a>
+            <div class="side-wrapper">
+                <div class="side-title">Home</div>
+                <div class="side-menu">
+                    <a class="sidebar-link Home is-active" href="#">
+                      Home
+                    </a>
+                    <a class="sidebar-link trending" href="{% url 'profile'%}">
+                        Profile
+                    </a>
+                    <a class="sidebar-link" href="{% url 'new-photos'%}">
+                       Upload post
+                    </a>
+                    <a class="sidebar-link" href="{%url 'updateprofile'%}">
+                        Update profile
+                     </a>
+                    <a class="sidebar-link" href="#">
+                       logout
+                    </a>
 
-<!-- {{user}} -->
-{% endblock %}
+                </div>
+            </div>
+            <div class="side-wrapper">
+                <div class="side-title">CATEGORY</div>
+                <div class="side-menu">
+                    <a class="sidebar-link" href="#">
+                         #NairobiGossip
+                    </a>
+                    <a class="sidebar-link" href="#">
+                       #Makeup
+                    </a>
+                    <a class="sidebar-link" href="#">
+ #Coding
+                    </a>
+                    <a class="sidebar-link" href="#">
+                        #Fashion
+                    </a>
+                </div>
+            </div>
+        </div>
+        {% if user.is_authenticated %}
+        <div class="wrapper">
+            <form class="navbar-form my-3" role="search" action="{% url 'search' %}">
+
+                <div class="input-group">
+                    <input type="text" class="form-control" placeholder="Search" name="image">
+                    <div class="input-group-btn search-bar">
+                        <button class="btn btn-default" type="submit"></button> </div>
+                    {% endif %}
+                </div>
+            </form>
+
+
+            <div class="row">
+
+
+                <div class="card mb-3" style="max-width: 1000px;">
+                    <div class="row g-0">
+                        <div class="col-md-4">
+                            <img src="{{image.image.url}}" class="img-fluid rounded-start" alt="...">
+                        </div>
+                        <div class="col-md-8">
+                            <div class="card-body">
+                                <h5 class="card-title">{{image.image_name}}</h5>
+                                <p class="card-text">{{image.caption}}</p>
+                                <p class="card-text"><small class="text-muted">Posted:{{ image.pub_date|timesince }} ago</small></p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+
+            </div>
+        </div>
+        <!-- {{user}} -->
+        {% endblock %}
