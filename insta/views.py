@@ -1,6 +1,6 @@
 from django.shortcuts import render, redirect
 from django.http  import HttpResponse
-from .models import Photos,Comments,Like
+from .models import Photos,Comments,Like,Profile
 from django.contrib.auth.decorators import login_required
 from .forms import NewPhotosForm,CommentForm
 
@@ -67,3 +67,11 @@ def search(request):
     else:
         message ="You havent searched any images "
         return render(request, 'search.html',{"message": message})
+
+@login_required(login_url='accounts/login/')
+
+@login_required(login_url='/accounts/login/')
+def profile(request):
+    image = Photos.objects.all()
+    profile = Profile.objects.all()
+    return render(request, 'profile.html', {"profile": profile, "image": image})
