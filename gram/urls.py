@@ -28,6 +28,7 @@ urlpatterns = [
     path('comment/', views.comment, name='comment'),
     path('search/', views.search, name='search'),
     path('profile/',views.profile,name="profile" ),
+    path('updateprofile/', views.updateprofile, name='updateprofile'),
 
     # re_path(r'^like/(?P<image_id>\d+)', views.like, name='like'),
 

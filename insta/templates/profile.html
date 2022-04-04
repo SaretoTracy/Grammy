@@ -1,16 +1,16 @@
 {%extends "django_registration/base.html"%} {% load static%} {% load bootstrap5 %} {% block styles %} {% bootstrap_css %}
-<link rel="stylesheet" href="{% static 'css/home.css' %}"> {% endblock %} {% block content %}
+<link rel="stylesheet" href="{% static 'css/profile.css' %}"> {% endblock %} {% block content %}
 <div style="margin-top: 122px;" class="container">
 
     <div class="container row">
         {% for photo in profile %}
-        <div class="col-md-4">
+        <div class="">
 
             <img src="{{ photo.profile_pic.url}}" class="img-fluid img-thumbnail rounded-circle" style="width: 150px;" alt="Avatar" />
         </div>
         <div class="col-md-4">
             <b>{{ user }}</b>
-            <a href="{% url 'update_profile' %}"> <button class="button">Edit Profile</button> </a>
+            <a href="{% url 'updateprofile' %}"> <button class="button">Edit Profile</button> </a>
             <a class='btn btn-default' href=""></a>
 
             <div class="my-4">
@@ -29,6 +29,11 @@
     <div class="container">
         {% for img in image %}
         <img src="{{img.image.url}}" alt="" srcset="" style="width:14rem ; height:9rem;" class="my-1"> {% endfor %}
+    </div>
+
+    <div class="container">
+        {% for img in profile %}
+        <img src="{{img.profile_pic.url}}" alt="" srcset="" style="width:14rem ; height:9rem;" class="my-1"> {% endfor %}
     </div>
 
 
