@@ -112,3 +112,7 @@ def single_image(request, image_id):
         raise Http404()
 
     return render(request, 'singlepost.html', {'image': image})
+def logout_request(request):
+	logout(request)
+	messages.info(request, "You have successfully logged out.") 
+	return redirect("welcome")
