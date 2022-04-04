@@ -51,11 +51,19 @@
                 </div>
             </div>
         </div>
+        {% if user.is_authenticated %}
         <div class="wrapper">
-            <div class="header">
-                <div class="search-bar">
-                    <input type="text" placeholder="Search">
+            <form class="navbar-form my-3" role="search" action="{% url 'search' %}">
+
+                <div class="input-group">
+                    <input type="text" class="form-control" placeholder="Search" name="image">
+                    <div class="input-group-btn search-bar">
+                        <button class="btn btn-default" type="submit"></button> </div>
+                    {% endif %}
                 </div>
+            </form>
+
+
 </body>
 
 </html>

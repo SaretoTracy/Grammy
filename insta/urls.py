@@ -13,6 +13,7 @@ urlpatterns = [
     path('new/photos', views.new_photos, name='new-photos'),
     path('like/<photos_id>', views.like, name='like'),
     path('comment/', views.comment, name='comment'),
+    path('search/', views.search, name='search'),
 
 )
 

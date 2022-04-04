@@ -26,6 +26,8 @@ urlpatterns = [
     path('tinymce/', include('tinymce.urls')),
     path('new/photos', views.new_photos, name='new-photos'),
     path('comment/', views.comment, name='comment'),
+    path('search/', views.search, name='search'),
+
     # re_path(r'^like/(?P<image_id>\d+)', views.like, name='like'),
 
 ]

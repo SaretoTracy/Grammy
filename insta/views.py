@@ -56,4 +56,14 @@ def comment(request):
         form= CommentForm()
     return render(request, 'home', {'form': form})
 
+@login_required(login_url='/accounts/login/')
+def search(request):
+    if 'image' in request.GET and request.GET['image']:
+        searchname = request.GET.get('image')
+        searchimage= Photos.search_by_image_name(searchname)
+        message = f"{searchname}"
 
+        return render(request, 'search.html', {"message": message, "image": searchimage})
+    else:
+        message ="You havent searched any images "
+        return render(request, 'search.html',{"message": message})

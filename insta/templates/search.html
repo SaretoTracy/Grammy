@@ -1,0 +1,39 @@
+{%extends "django_registration/base.html"%}
+{% load bootstrap5 %}
+{% load static %}
+{% block styles %}
+    {% bootstrap_css %}
+    <link rel="stylesheet" href="{% static 'css/home.css' %}">
+{% endblock %}
+
+{% block content %}
+<div class="container row text-center " style="margin-top:99px; ">
+
+  <div class="row">
+    {% if image%}
+      <h2>Found {{ image|length }} of searched term {{message}}</h2>
+    {% else %}
+      <h2> Found 0 images for the search term {{message}}</h2>
+    {% endif %}
+
+  </div>
+
+  <div class="row">
+
+  {% if image %}
+    {% for img in image %}
+    <div class="container row text-center  ">
+      <div class="container bg-light mb-4" style="margin-left: 210px;width: 52rem;">
+      <h4 style="text-align:center; color:orangered";>IMAGE DETAILS</h4>
+      <img src="{{img.image.url}}" alt="" srcset="" style="width:44rem ; ">
+      <h4>Image Name: {{img.image_name}}</h4>
+      <p>Caption: {{img.caption}}</p>
+      <h4>Posted by: {{img.user}}</h4>
+      <h4>Post Date: {{img.pub_date}}</h4>
+      </div>
+  </div>
+    {% endfor %}
+  {% endif %}
+  </div>
+</div>
+{% endblock %}

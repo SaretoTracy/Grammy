@@ -23,6 +23,7 @@ class Profile (models.Model):
 class Photos(models.Model):
     image_name = HTMLField()
     image = CloudinaryField('images/')
+    comments = models.TextField(default="No Comment")
     caption= models.CharField(max_length=250)
     user = models.ForeignKey(User, on_delete=models.CASCADE, default=1)
     pub_date = models.DateTimeField(auto_now_add=True)
@@ -30,6 +31,13 @@ class Photos(models.Model):
 
     def __str__(self):
         return self.caption
+    def save_photos(self):
+        self.save()
+    def delete_photos(self):
+        self.delete()
+    @property 
+    def save_comments(self):
+        self.save()
 
     @classmethod
     def display_photos(cls):
@@ -42,20 +50,13 @@ class Photos(models.Model):
     def saved_likes(self):
         return self.photolikes.count()
     @classmethod
-    def search_photos(cls,search_term):
-        photos = cls.objects.filter(photo_name__icontains = search_term).all()
+    
+    def search_by_image_name(cls, searchname):
+        photos = cls.objects.filter(image_name__icontains = searchname).all()
         return photos
     def delete_post(self):
         self.delete()
 
-    
-    def save_photos(self):
-        self.save()
-    def delete_photos(self):
-        self.delete()
-    @property 
-    def save_comments(self):
-        self.save()
     @classmethod
     def display_all(cls):
         '''
