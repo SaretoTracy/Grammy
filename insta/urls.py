@@ -15,6 +15,7 @@ urlpatterns = [
     path('comment/', views.comment, name='comment'),
     path('search/', views.search, name='search'),
     path('profile/',views.profile,name="profile" ),
+    path('updateprofile/', views.edit_profile, name='updateprofile'),
 
 )
 

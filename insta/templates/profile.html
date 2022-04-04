@@ -2,18 +2,15 @@
 <link rel="stylesheet" href="{% static 'css/home.css' %}"> {% endblock %} {% block content %}
 <div style="margin-top: 122px;" class="container">
 
-    <div class="container row" style="margin-left: 133px;">
+    <div class="container row">
         {% for photo in profile %}
         <div class="col-md-4">
 
             <img src="{{ photo.profile_pic.url}}" class="img-fluid img-thumbnail rounded-circle" style="width: 150px;" alt="Avatar" />
-
-
-
         </div>
         <div class="col-md-4">
             <b>{{ user }}</b>
-            <a href=""> <button class="button">Edit Profile</button> </a>
+            <a href="{% url 'update_profile' %}"> <button class="button">Edit Profile</button> </a>
             <a class='btn btn-default' href=""></a>
 
             <div class="my-4">
