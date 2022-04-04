@@ -23,7 +23,7 @@ class Profile (models.Model):
 class Photos(models.Model):
     image_name = HTMLField()
     image = CloudinaryField('images/')
-    comments = models.TextField(default="No Comment")
+    liked = models.ManyToManyField(User,blank=True,related_name='liked')
     caption= models.CharField(max_length=250)
     user = models.ForeignKey(User, on_delete=models.CASCADE, default=1)
     pub_date = models.DateTimeField(auto_now_add=True)
@@ -38,17 +38,16 @@ class Photos(models.Model):
     @property 
     def save_comments(self):
         self.save()
-
+    
     @classmethod
     def display_photos(cls):
         photos = cls.objects.all().order_by('-posted_at')
         return photos
+    
+ 
     @property
     def saved_comments(self):
         return self.comments.all()
-    @property
-    def saved_likes(self):
-        return self.photolikes.count()
     @classmethod
     
     def search_by_image_name(cls, searchname):
@@ -64,6 +63,13 @@ class Photos(models.Model):
         '''
         caption = cls.objects.all()
         return caption
+    @property
+    def num_likes(self):
+        return self.likes.all().count()
+LIKE_CHOICES = (
+    ('Like', 'Like'),
+    ('Unlike','Unlike'),
+)    
 
 class Comments(models.Model):
     comment= models.CharField(max_length=255)
@@ -76,16 +82,8 @@ class Comments(models.Model):
     def save_comment(self):
         self.save()
     @classmethod
-    def display_comments_by_photoId(cls,image_id):
-        comments = cls.objects.filter(image_id = image_id)
+    def display_comments_by_photoId(cls,photos_id):
+        comments = cls.objects.filter(photos_id = photos_id)
         return comments
 
-class Like(models.Model):
-    image=models.ForeignKey(Photos, on_delete = models.CASCADE,related_name="piclikes")
-    liking=models.ForeignKey(User, on_delete = models.CASCADE,related_name="userlikes")
-
-    def __str__(self):
-        return self.liking
-    def save_likes(self):
-        self.save()
 

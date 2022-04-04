@@ -1,5 +1,6 @@
 {%extends "django_registration/base.html"%} {% load bootstrap5 %} {% load static %} {% block styles %} {% bootstrap_css %}
 <link rel="stylesheet" href="{% static 'css/page.css' %}"> {% endblock %} {% block content%}
+<script src="https://kit.fontawesome.com/a70663aaec.js" crossorigin="anonymous"></script>
 <div class="container">
     <div class="container">
         <div class="sidebar">
@@ -59,7 +60,7 @@
             <div class="row">
 
 
-                <div class="card mb-3" style="max-width: 1000px;">
+                <div class="card show mb-3" style="max-width: 1000px;">
                     <div class="row g-0">
                         <div class="col-md-4">
                             <img src="{{image.image.url}}" class="img-fluid rounded-start" alt="...">
@@ -69,12 +70,24 @@
                                 <h5 class="card-title">{{image.image_name}}</h5>
                                 <p class="card-text">{{image.caption}}</p>
                                 <p class="card-text"><small class="text-muted">Posted:{{ image.pub_date|timesince }} ago</small></p>
-
+                                <div class="icon">
+                                    <div>
+                                        <i class="fa-solid fas fa-thumbs-up">Like</i>
+                                    </div>
+                                    <div>
+                                        <i class="fa-solid fas fa-thumbs-down">dislike</i>
+                                    </div>
+                                    <div>
+                                        <i class="fa-solid fas fa-comments">Comments</i>
+                                    </div>
+                                </div>
 
                             </div>
 
 
                         </div>
+
+
                     </div>
                 </div>
 

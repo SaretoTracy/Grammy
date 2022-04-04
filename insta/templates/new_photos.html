@@ -55,7 +55,7 @@
                 </div>
             </form>
 
-            <div class=" post  ">
+            <div class=" post show ">
                 <h4>CREATE A NEW POST</h4>
                 <form action="{%url 'new-photos'%}" method="post" enctype="multipart/form-data" class="m-4">
                     {%csrf_token%} {% bootstrap_form form%}

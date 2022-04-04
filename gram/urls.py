@@ -25,7 +25,7 @@ urlpatterns = [
     path('accounts/', include('django.contrib.auth.urls')),
     path('tinymce/', include('tinymce.urls')),
     path('new/photos', views.new_photos, name='new-photos'),
-    
+    path('like/',views.like_post,name="likepost" ),
     path('search/', views.search, name='search'),
     path('profile/',views.profile,name="profile" ),
     path('updateprofile/', views.updateprofile, name='updateprofile'),

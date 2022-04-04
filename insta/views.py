@@ -1,6 +1,6 @@
 from django.shortcuts import render, redirect
 from django.http  import HttpResponse
-from .models import Photos,Comments,Like,Profile
+from .models import Photos,Comments,Profile
 from django.contrib.auth.decorators import login_required
 from .forms import NewPhotosForm,CommentForm,ProfileForm
 
@@ -34,13 +34,25 @@ def new_photos(request):
        form = NewPhotosForm()
    return render(request, 'new_photos.html', {"form": form})
 
-def like(request, photos_id):
-    current_user=request.user
-    image=Photos.objects.get(id=photos_id)
-    new_like.created=like.objects.get_or_create(liker=current_user,image=image)
-    new_like.save ()
-
-    return HttpResponseRedirect(request.Meta['HTTP_REFERER'])
+def like_post(request):
+    user = request.user
+    if request.method == "POST":
+        image_id = request.POST.get('image_id')
+        post = Photos.objects.get(id=image_id)
+        
+        if user in post.liked.all():
+            post.liked.remove(user)
+        else:
+            post.liked.add(user)
+        like, created = Like.objects.get_or_create(user=user,image_id=image_id)
+        
+        if not created:
+            if like.value == 'Like':
+                like.value = 'Unlike'
+            else:
+                like.value = 'Like' 
+        like.save()           
+    return redirect('singlepage.html')
 
 
 @login_required(login_url='/accounts/login/')

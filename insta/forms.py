@@ -5,16 +5,13 @@ from django import forms
 class NewPhotosForm(forms.ModelForm):
    class Meta:
        model = Photos
-       exclude = ['profile','likes','comments']
+       exclude = ['profile','likes',Comments]
 
 class CommentForm(forms.ModelForm):
-    def __init__(self,*args,**kwargs):
-        super().__init__(*args,**kwargs)
-        self.fields['comment'].widget=forms.TextInput()
-        self.fields['comment'].widget.attrs['placeholder']='Leave a comment...'
     class Meta:
         model = Comments
-        fields = ('comment',)
+        exclude = ['user']
+
 
 class ProfileForm(forms.ModelForm):
     class Meta:

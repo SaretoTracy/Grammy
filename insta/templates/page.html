@@ -18,7 +18,7 @@
             <div class="side-wrapper">
                 <div class="side-title">Home</div>
                 <div class="side-menu">
-                    <a class="sidebar-link Home is-active" href="{% url 'page' %}">
+                    <a class="sidebar-link Home is-active" href="#">
                       Home
                     </a>
                     <a class="sidebar-link trending" href="{% url 'profile'%}">
@@ -27,9 +27,6 @@
                     <a class="sidebar-link" href="{% url 'new-photos'%}">
                        Upload post
                     </a>
-                    <a class="sidebar-link" href="{%url 'updateprofile'%}">
-                        Update profile
-                     </a>
                     <a class="sidebar-link" href="#">
                        logout
                     </a>
@@ -67,24 +64,33 @@
             </form>
 
 
-
-            <div class="row show ">
-
+            <div class="card show page mb-3">
                 {% for pic in posts %}
-                <div class="col-md-4  ">
-                    {%if pic.image%}
-                    <a href="{% url 'image' pic.id %}">
-                        <img src="{{pic.image.url}}" data-target="#imageModal{{pic.id}}" data-toggle="modal" alt="" class="img-fluid" id="eachimage" style="height: 200px; width: 200px"></a> {%else%}
-                    <p>No image</p>
-
-
-                    {%endif%}
-
-
+                <a href="{% url 'image' pic.id %}">
+                    <img src="{{pic.image.url}}" data-target="#imageModal{{pic.id}}" data-toggle="modal" alt="" class="img-fluid" id="eachimage" style="height: 400px; width: 600px"></a>
+                <div class="card-body">
+                    <h5 class="card-title">{{pic.image_name}}</h5>
+                    <p class="card-text">{{pic.caption}}</p>
+                    <p class="card-text"><small class="text-muted">posted:{{pic.pub_date}} ago</small></p>
                 </div>
+                {% endfor %} div class="col-md-3" id="tsparticles">
+                <div class="jumbotron" id="jumbo3">
+                    <div class="heads">
+                        <h6>Friend Suggestions</h6>
+                    </div>
 
-                {% endfor %}
+                    {% for user in all %}
+                    <div class="part1">
+                        <img src="" alt="">
+                        <h5>{{user.username}}</h5>
+                        <button type="submit" id="follo" class="btn btn-outline-info btn-sm">Follow <i
+                                class="fa fa-plus" aria-hidden="true"></i></button>
+                    </div>
+                    {% endfor %}
+                </div>
             </div>
+
+        </div>
 
 
 </body>
