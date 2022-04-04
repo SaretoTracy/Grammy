@@ -18,7 +18,7 @@
             <div class="side-wrapper">
                 <div class="side-title">Home</div>
                 <div class="side-menu">
-                    <a class="sidebar-link Home is-active" href="#">
+                    <a class="sidebar-link Home is-active" href="{% url 'page' %}">
                       Home
                     </a>
                     <a class="sidebar-link trending" href="{% url 'profile'%}">
@@ -69,7 +69,7 @@
             <div class="row show ">
 
                 {% for pic in posts %}
-                <div class="col-md-4 card ">
+                <div class="col-md-4  ">
                     {%if pic.image%}
                     <a href="{% url 'image' pic.id %}">
                         <img src="{{pic.image.url}}" data-target="#imageModal{{pic.id}}" data-toggle="modal" alt="" class="img-fluid" id="eachimage" style="height: 200px; width: 200px"></a> {%else%}

@@ -1,39 +1,84 @@
-{%extends "django_registration/base.html"%}
-{% load bootstrap5 %}
-{% load static %}
-{% block styles %}
-    {% bootstrap_css %}
-    <link rel="stylesheet" href="{% static 'css/home.css' %}">
-{% endblock %}
+{%extends "django_registration/base.html"%} {% load bootstrap5 %} {% load static %} {% block styles %} {% bootstrap_css %}
+<link rel="stylesheet" href="{% static 'css/page.css' %}"> {% endblock %} {% block content%}
+<div class="container">
+    <div class="container">
+        <div class="sidebar">
+            <a class="logo-expand" href="#">Grammy</a>
+            <div class="side-wrapper">
+                <div class="side-title">Home</div>
+                <div class="side-menu">
+                    <a class="sidebar-link Home is-active" href="{% url 'page' %}">
+                      Home
+                    </a>
+                    <a class="sidebar-link trending" href="{% url 'profile'%}">
+                        Profile
+                    </a>
+                    <a class="sidebar-link" href="{% url 'new-photos'%}">
+                       Upload post
+                    </a>
+                    <a class="sidebar-link" href="{%url 'updateprofile'%}">
+                        Update profile
+                     </a>
+                    <a class="sidebar-link" href="#">
+                       logout
+                    </a>
 
-{% block content %}
-<div class="container row text-center " style="margin-top:99px; ">
+                </div>
+            </div>
+            <div class="side-wrapper">
+                <div class="side-title">CATEGORY</div>
+                <div class="side-menu">
+                    <a class="sidebar-link" href="#">
+                         #NairobiGossip
+                    </a>
+                    <a class="sidebar-link" href="#">
+                       #Makeup
+                    </a>
+                    <a class="sidebar-link" href="#">
+ #Coding
+                    </a>
+                    <a class="sidebar-link" href="#">
+                        #Fashion
+                    </a>
+                </div>
+            </div>
+        </div>
+        {% if user.is_authenticated %}
+        <div class="wrapper">
+            <form class="navbar-form my-3" role="search" action="{% url 'search' %}">
 
-  <div class="row">
-    {% if image%}
-      <h2>Found {{ image|length }} of searched term {{message}}</h2>
-    {% else %}
-      <h2> Found 0 images for the search term {{message}}</h2>
-    {% endif %}
+                <div class="input-group">
+                    <input type="text" class="form-control" placeholder="Search" name="image">
+                    <div class="input-group-btn search-bar">
+                        <button class="btn btn-default" type="submit"></button> </div>
+                    {% endif %}
+                </div>
+            </form>
+            <div class=" row text-center " style="margin-top:30px; ">
 
-  </div>
+                <div class="row">
+                    {% if image%}
+                    <h2>Found {{ image|length }} of searched term {{message}}</h2>
+                    {% else %}
+                    <h2> Found 0 images for the user {{message}}</h2>
+                    {% endif %}
 
-  <div class="row">
+                </div>
 
-  {% if image %}
-    {% for img in image %}
-    <div class="container row text-center  ">
-      <div class="container bg-light mb-4" style="margin-left: 210px;width: 52rem;">
-      <h4 style="text-align:center; color:orangered";>IMAGE DETAILS</h4>
-      <img src="{{img.image.url}}" alt="" srcset="" style="width:44rem ; ">
-      <h4>Image Name: {{img.image_name}}</h4>
-      <p>Caption: {{img.caption}}</p>
-      <h4>Posted by: {{img.user}}</h4>
-      <h4>Post Date: {{img.pub_date}}</h4>
-      </div>
-  </div>
-    {% endfor %}
-  {% endif %}
-  </div>
-</div>
-{% endblock %}
+                <div class="row">
+
+                    {% if image %} {% for img in image %}
+                    <div class=" text-center  ">
+                        <div class=" mb-4" style="margin-left: 210px;width: 52rem;">
+                            <h4 style="text-align:center; color:orangered" ;>IMAGE DETAILS</h4>
+                            <img src="{{img.image.url}}" alt="" srcset="" style="width:44rem ; ">
+                            <h4>Image Name: {{img.image_name}}</h4>
+                            <p>Caption: {{img.caption}}</p>
+                            <h4>Posted by: {{img.user}}</h4>
+                            <h4>Post Date: {{img.pub_date}}</h4>
+                        </div>
+                    </div>
+                    {% endfor %} {% endif %}
+                </div>
+            </div>
+            {% endblock %}
