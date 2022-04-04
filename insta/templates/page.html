@@ -63,6 +63,20 @@
                 </div>
             </form>
 
+            <div class="row show ">
+
+                {% for pic in posts %}
+                <div class="col-md-4 card ">
+                    {%if pic.image%}
+                    <a href="">
+                        <img src="{{pic.image.url}}" data-target="#imageModal{{pic.id}}" data-toggle="modal" alt="" class="img-fluid" id="eachimage" style="height: 200px; width: 200px"></a> {%else%}
+                    <p>No image</p>
+                    {%endif%}
+                </div>
+
+                {% endfor %}
+            </div>
+
 
 </body>
 
